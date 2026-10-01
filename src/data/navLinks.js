@@ -7,8 +7,6 @@ export const navLinks = [
     subMenu: [
       { name: "Fitness Calculator", path: "/fitness-calculator" },
       { name: "Coaches", path: "/coaches" },
-      { name: "Challenges", path: "/challenges" },
-      { name: "Challenge Detail", path: "/challenge-detail" },
     ],
   },
 

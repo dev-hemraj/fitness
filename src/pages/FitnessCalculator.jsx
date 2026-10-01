@@ -1,6 +1,18 @@
+import { useState } from "react";
 import { FaRulerVertical, FaWeightScale, FaHeartPulse } from "react-icons/fa6";
 
 const FitnessCalculator = () => {
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [bmi, setBmi] = useState(null);
+
+  const handleCalculateBmi = () => {
+    const heightMeters = height / 100;
+    const BMI = (weight / (heightMeters * heightMeters)).toFixed(1);
+    console.log(BMI);
+  };
   return (
     <main className="bg-white dark:bg-slate-950 min-h-screen">
       {/* Page Header */}
@@ -51,6 +63,8 @@ const FitnessCalculator = () => {
                     <FaRulerVertical className="absolute left-4 top-1/2 -translate-y-1/2 text-green-600" />
 
                     <input
+                      value={height}
+                      onChange={(e) => setHeight(e.target.value)}
                       type="number"
                       id="height"
                       placeholder="175"
@@ -76,6 +90,8 @@ const FitnessCalculator = () => {
                     <FaWeightScale className="absolute left-4 top-1/2 -translate-y-1/2 text-green-600" />
 
                     <input
+                      value={weight}
+                      onChange={(e) => setWeight(e.target.value)}
                       type="number"
                       id="weight"
                       placeholder="70"
@@ -98,6 +114,8 @@ const FitnessCalculator = () => {
                   </label>
 
                   <input
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}
                     type="number"
                     id="age"
                     placeholder="30"
@@ -115,6 +133,8 @@ const FitnessCalculator = () => {
                   </label>
 
                   <select
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
                     id="gender"
                     defaultValue=""
                     className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-slate-900 dark:text-slate-100 outline-none focus:border-green-600 transition"
@@ -129,6 +149,7 @@ const FitnessCalculator = () => {
                 </div>
 
                 <button
+                  onClick={handleCalculateBmi}
                   type="button"
                   className="w-full bg-green-600 text-white dark:text-slate-950 rounded-full px-6 py-3.5 font-bold hover:-translate-y-1 transition duration-300 cursor-pointer"
                 >

@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import MainLayout from "./layouts/MainLayout";
 import ChallengeDetail from "./pages/ChallengeDetail";
+import BlogDetail from "./pages/BlogDetail";
 
 function App() {
   return (
@@ -23,9 +24,8 @@ function App() {
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="//fitness-calculator" element={<FitnessCalculator />} />
           <Route path="/coaches" element={<Coaches />} />
-          <Route path="/challenges" element={<Challenges />} />
-          <Route path="/challenge-detail" element={<ChallengeDetail />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Route>

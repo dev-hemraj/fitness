@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { FaArrowRight, FaCalendarDays, FaClock, FaUser } from "react-icons/fa6";
+import { FaArrowRight } from "react-icons/fa6";
 const BlogCard = ({ blog }) => {
   return (
     <article className="group bg-slate-100 dark:bg-slate-900 rounded-3xl overflow-hidden">
@@ -30,7 +30,7 @@ const BlogCard = ({ blog }) => {
         </div>
 
         <Link
-          to="#"
+          to={`/blog/${blog.slug}`}
           className="inline-flex items-center gap-2 text-green-600 dark:text-green-400 font-bold"
         >
           Read More

@@ -5,7 +5,6 @@ import blog4 from "../assets/images/blog-4.jpg";
 import blog5 from "../assets/images/blog-5.jpg";
 import blog6 from "../assets/images/blog-6.jpg";
 import blog7 from "../assets/images/blog-7.jpg";
-
 const blogs = [
   {
     id: 1,
@@ -18,26 +17,21 @@ const blogs = [
     readTime: "6 min read",
     featured: true,
 
-    content: ` A successful training plan is not about doing everything perfectly. It is about creating a routine that fits your lifestyle and helps you stay consistent.
-      Building a fitness routine is one of the most important steps towards
-      achieving long-term results.
+    content: `A successful training plan is not about doing everything perfectly. It is about creating a routine that fits your lifestyle and helps you stay consistent.
 
-      Many people start with extreme workouts and unrealistic goals, but the
-      best approach is creating habits that you can maintain over time.
+      Building a fitness routine is one of the most important steps towards achieving long-term results.
 
-      A successful fitness routine should fit your schedule, your current
-      fitness level, and your personal goals.
+      Many people start with extreme workouts and unrealistic goals, but the best approach is creating habits that you can maintain over time.
 
-      Start with simple actions:
-      
-      - Choose realistic training days
-      - Focus on exercises you enjoy
-      - Track your progress
-      - Allow time for recovery
-
-      Consistency will always create better results than short periods of
-      intense motivation followed by stopping.
+      A successful fitness routine should fit your schedule, your current fitness level, and your personal goals.
     `,
+
+    actionLists: [
+      "Choose realistic training days",
+      "Focus on exercises you enjoy",
+      "Track your progress",
+      "Allow time for recovery",
+    ],
   },
 
   {
@@ -49,19 +43,24 @@ const blogs = [
     author: "John Carter",
     image: blog2,
     readTime: "5 min read",
-    featured: false,
+    featured: true,
 
-    content: ` Small improvements in technique, recovery, and progression can make a big difference in your strength training results.
+    content: `Small improvements in technique, recovery, and progression can make a big difference in your strength training results.
+
       Strength training is not only about lifting heavier weights.
 
-      The quality of your movement, exercise selection, recovery, and training
-      progression all influence your results.
+      The quality of your movement, exercise selection, recovery, and training progression all influence your results.
 
-      Improving your technique allows you to train more efficiently while
-      reducing unnecessary stress on your body.
-
-      Focus on controlled movements, gradual progression, and consistency.
+      Improving your technique allows you to train more efficiently while reducing unnecessary stress on your body.
     `,
+
+    actionLists: [
+      "Focus on proper exercise technique",
+      "Increase weight or difficulty gradually",
+      "Use controlled movements",
+      "Give your body enough recovery time",
+      "Track your strength progress",
+    ],
   },
 
   {
@@ -75,18 +74,20 @@ const blogs = [
     readTime: "7 min read",
     featured: false,
 
-    content: ` You don't need an extreme diet to support your training. Small nutrition changes can create healthier habits.
+    content: `You don't need an extreme diet to support your training. Small nutrition changes can create healthier habits.
+
       Good nutrition supports your training performance, recovery, and energy.
 
-      Instead of following complicated diets, focus on simple habits:
-      
-      - Eat enough protein
-      - Stay hydrated
-      - Choose quality whole foods
-      - Maintain balanced meals
-
-      Sustainable nutrition creates better long-term results.
+      Instead of following complicated diets, focus on simple habits.
     `,
+
+    actionLists: [
+      "Eat enough protein",
+      "Stay hydrated throughout the day",
+      "Choose quality whole foods",
+      "Build balanced meals",
+      "Eat consistently around your training schedule",
+    ],
   },
 
   {
@@ -100,14 +101,22 @@ const blogs = [
     readTime: "4 min read",
     featured: false,
 
-    content: ` Recovery gives your body the time it needs to adapt, rebuild, and prepare for your next training session.
+    content: `Recovery gives your body the time it needs to adapt, rebuild, and prepare for your next training session.
+
       Training creates the stimulus, but recovery creates the improvement.
 
-      Sleep, nutrition, mobility work, and rest days allow your body to repair
-      and become stronger.
+      Sleep, nutrition, mobility work, and rest days allow your body to repair and become stronger.
 
       Ignoring recovery can reduce performance and increase the risk of injury.
     `,
+
+    actionLists: [
+      "Get enough quality sleep",
+      "Schedule regular rest days",
+      "Stay hydrated",
+      "Eat enough nutrients to support recovery",
+      "Use light mobility or stretching when needed",
+    ],
   },
 
   {
@@ -121,15 +130,22 @@ const blogs = [
     readTime: "6 min read",
     featured: false,
 
-    content: ` Coaching can provide structure, accountability, and guidance when you want a more focused training approach.
-      Personal coaching can help people who need guidance, motivation, and a
-      structured plan.
+    content: `Coaching can provide structure, accountability, and guidance when you want a more focused training approach.
 
-      A coach can help you understand exercises, create realistic goals, and
-      adjust your training based on your progress.
+      Personal coaching can help people who need guidance, motivation, and a structured plan.
+
+      A coach can help you understand exercises, create realistic goals, and adjust your training based on your progress.
 
       The right support can make your fitness journey more efficient.
     `,
+
+    actionLists: [
+      "Get a training plan based on your goals",
+      "Improve exercise technique",
+      "Stay accountable to your routine",
+      "Adjust training when progress changes",
+      "Receive guidance when you feel unsure",
+    ],
   },
 
   {
@@ -143,14 +159,22 @@ const blogs = [
     readTime: "5 min read",
     featured: false,
 
-    content: ` Motivation changes from day to day. Strong habits and simple routines help you continue moving forward.
+    content: `Motivation changes from day to day. Strong habits and simple routines help you continue moving forward.
+
       Motivation is not always constant.
 
-      The key to progress is creating systems and habits that continue even
-      when motivation is low.
+      The key to progress is creating systems and habits that continue even when motivation is low.
 
       Focus on small actions and remember that consistency builds confidence.
     `,
+
+    actionLists: [
+      "Keep your routine simple",
+      "Set small and realistic goals",
+      "Train even when motivation is low",
+      "Focus on consistency instead of perfection",
+      "Track small improvements over time",
+    ],
   },
 
   {
@@ -164,14 +188,22 @@ const blogs = [
     readTime: "6 min read",
     featured: false,
 
-    content: ` Clear and realistic goals make it easier to measure progress and stay focused on what matters.
+    content: `Clear and realistic goals make it easier to measure progress and stay focused on what matters.
+
       Setting the right goals creates direction and motivation.
 
       Good fitness goals should be specific, realistic, and measurable.
 
-      Instead of focusing only on results, focus on building habits that lead
-      to those results.
+      Instead of focusing only on results, focus on building habits that lead to those results.
     `,
+
+    actionLists: [
+      "Set specific goals",
+      "Make your goals realistic",
+      "Choose measurable targets",
+      "Create smaller milestones",
+      "Focus on habits that support the final goal",
+    ],
   },
 ];
 

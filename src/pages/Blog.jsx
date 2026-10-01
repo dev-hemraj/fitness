@@ -1,7 +1,6 @@
 import blogs from "../data/blogs";
 import { Link } from "react-router";
 import { FaArrowRight, FaCalendarDays, FaClock, FaUser } from "react-icons/fa6";
-import blog1 from "../assets/images/trainer-1.jpg";
 import BlogCard from "../components/BlogCard";
 
 const Blog = () => {
@@ -69,7 +68,7 @@ const Blog = () => {
               </div>
 
               <Link
-                to="#"
+                to={`/blog/${featuredBlog.slug}`}
                 className="inline-flex items-center gap-2 bg-green-600 text-white dark:text-slate-950 px-6 py-3 rounded-full font-bold hover:-translate-y-1 transition duration-300"
               >
                 Read Article
