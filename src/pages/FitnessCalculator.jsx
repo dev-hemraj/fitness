@@ -9,10 +9,18 @@ const FitnessCalculator = () => {
   const [bmi, setBmi] = useState(null);
 
   const handleCalculateBmi = () => {
+    if (!height && !weight) return;
     const heightMeters = height / 100;
     const BMI = (weight / (heightMeters * heightMeters)).toFixed(1);
-    console.log(BMI);
+    setBmi(BMI);
   };
+
+  // BMI result
+  const underWeight = bmi >= 1 && bmi <= 18.5;
+  const healthy = bmi >= 18.5 && bmi <= 24.9;
+  const overWeight = bmi >= 25 && bmi <= 29.9;
+  const obesity = bmi >= 30;
+
   return (
     <main className="bg-white dark:bg-slate-950 min-h-screen">
       {/* Page Header */}
@@ -160,7 +168,19 @@ const FitnessCalculator = () => {
 
             {/* Result */}
             <div>
-              <div className="bg-green-600 rounded-3xl p-7 lg:p-10 mb-6">
+              <div
+                className={`rounded-3xl p-7 lg:p-10 mb-6 relative ${
+                  underWeight
+                    ? "bg-blue-500"
+                    : healthy
+                      ? "bg-green-600"
+                      : overWeight
+                        ? "bg-orange-500"
+                        : obesity
+                          ? "bg-red-600"
+                          : " bg-green-600 dark:bg-slate-900"
+                }`}
+              >
                 <div className="h-14 w-14 rounded-full bg-white/20 text-white flex items-center justify-center text-2xl mb-6">
                   <FaHeartPulse />
                 </div>
@@ -170,7 +190,7 @@ const FitnessCalculator = () => {
                 </p>
 
                 <h2 className="text-5xl lg:text-6xl font-black text-white mb-3">
-                  22.9
+                  {bmi}
                 </h2>
 
                 <p className="text-xl font-bold text-white mb-4">
@@ -181,6 +201,21 @@ const FitnessCalculator = () => {
                   Your result will appear here after you enter your information
                   and calculate your BMI.
                 </p>
+                {bmi && (
+                  <div className="bmiResult absolute bg-white px-4 py-2 rounded-lg top-5 right-5">
+                    {underWeight ? (
+                      <p>You are underweight</p>
+                    ) : healthy ? (
+                      <p>You have a healthy weight.</p>
+                    ) : overWeight ? (
+                      <p>ou are overweight.</p>
+                    ) : obesity ? (
+                      <p>Your weight is in the obesity range.</p>
+                    ) : (
+                      <p>No BMI value yet!! 😢😢</p>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* BMI Range */}

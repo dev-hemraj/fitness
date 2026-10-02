@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
 import { navLinks } from "../data/navLinks";
+import { contactInfo } from "../data/contactInfo";
 
 const Footer = () => {
   return (
@@ -38,9 +39,9 @@ const Footer = () => {
             </h3>
 
             <ul className="space-y-3 text-gray-400">
-              <li>Email: hello@fitzone.com</li>
-              <li>Phone: +123 456 789</li>
-              <li>Location: Lisbon, Portugal</li>
+              <li>Email: {contactInfo.email}</li>
+              <li>Phone: {contactInfo.phone}</li>
+              <li>Location: {contactInfo.location}</li>
             </ul>
           </div>
         </div>

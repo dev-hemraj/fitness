@@ -1,6 +1,50 @@
+import { useState } from "react";
+import { contactInfo } from "../data/contactInfo";
 import { FaEnvelope, FaPhone, FaLocationDot, FaClock } from "react-icons/fa6";
 
 const Contact = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [plan, setPlan] = useState("");
+  const [goal, setGoal] = useState("");
+  const [message, setMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isSending, setIsSending] = useState(false);
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    setIsSending(true);
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      setSuccessMessage("Message sent successfully ✅");
+      setIsSending(false);
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPhone("");
+      setPlan("");
+      setGoal("");
+      setMessage("");
+      setTimeout(() => {
+        setSuccessMessage("");
+      }, 3000);
+    } else {
+      setErrorMessage("Something went wrong. Please try again.");
+      setIsSending(false);
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
+    }
+  };
+
   return (
     <main className="bg-white dark:bg-slate-950 min-h-screen">
       {/* Page Header */}
@@ -54,7 +98,7 @@ const Contact = () => {
                     </p>
 
                     <p className="text-slate-500 dark:text-slate-400 mt-1">
-                      hello@reactfit.com
+                      {contactInfo.email}
                     </p>
                   </div>
                 </div>
@@ -70,7 +114,7 @@ const Contact = () => {
                     </p>
 
                     <p className="text-slate-500 dark:text-slate-400 mt-1">
-                      +1 234 567 890
+                      {contactInfo.phone}
                     </p>
                   </div>
                 </div>
@@ -86,7 +130,7 @@ const Contact = () => {
                     </p>
 
                     <p className="text-slate-500 dark:text-slate-400 mt-1">
-                      123 Fitness Street, New York
+                      {contactInfo.location}
                     </p>
                   </div>
                 </div>
@@ -102,11 +146,11 @@ const Contact = () => {
                     </p>
 
                     <p className="text-slate-500 dark:text-slate-400 mt-1">
-                      Monday - Saturday
+                      {contactInfo.openingHours.days}
                     </p>
 
                     <p className="text-slate-500 dark:text-slate-400">
-                      6:00 AM - 9:00 PM
+                      {contactInfo.openingHours.time}
                     </p>
                   </div>
                 </div>
@@ -127,7 +171,16 @@ const Contact = () => {
                   </p>
                 </div>
 
-                <form>
+                <form
+                  action="https://api.web3forms.com/submit"
+                  method="POST"
+                  onSubmit={handleFormSubmit}
+                >
+                  <input
+                    type="hidden"
+                    name="access_key"
+                    value="08483920-f4dc-4ba8-947d-0bada5747133"
+                  />
                   <div className="grid sm:grid-cols-2 gap-5">
                     {/* First Name */}
                     <div>
@@ -139,11 +192,18 @@ const Contact = () => {
                       </label>
 
                       <input
+                        required
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        name="firstName"
                         type="text"
                         id="firstName"
                         placeholder="John"
                         className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-slate-900 dark:text-slate-100 outline-none focus:border-green-600 transition"
                       />
+                      <span className="text-red-500 text-sm ">
+                        {errorMessage}
+                      </span>
                     </div>
 
                     {/* Last Name */}
@@ -156,6 +216,10 @@ const Contact = () => {
                       </label>
 
                       <input
+                        required
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        name="lastName"
                         type="text"
                         id="lastName"
                         placeholder="Carter"
@@ -171,13 +235,19 @@ const Contact = () => {
                       >
                         Email Address
                       </label>
-
                       <input
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        name="email"
                         type="email"
                         id="email"
                         placeholder="john@example.com"
                         className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-slate-900 dark:text-slate-100 outline-none focus:border-green-600 transition"
                       />
+                      <span className="text-red-500 text-sm ">
+                        {errorMessage}
+                      </span>
                     </div>
 
                     {/* Phone */}
@@ -190,6 +260,10 @@ const Contact = () => {
                       </label>
 
                       <input
+                        required
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        name="phone"
                         type="tel"
                         id="phone"
                         placeholder="+1 234 567 890"
@@ -208,6 +282,10 @@ const Contact = () => {
                     </label>
 
                     <select
+                      required
+                      value={plan}
+                      onChange={(e) => setPlan(e.target.value)}
+                      name="plan"
                       id="plan"
                       defaultValue=""
                       className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-slate-900 dark:text-slate-100 outline-none focus:border-green-600 transition"
@@ -232,6 +310,10 @@ const Contact = () => {
                     </label>
 
                     <select
+                      required
+                      value={goal}
+                      onChange={(e) => setGoal(e.target.value)}
+                      name="goal"
                       id="goal"
                       defaultValue=""
                       className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-slate-900 dark:text-slate-100 outline-none focus:border-green-600 transition"
@@ -259,6 +341,9 @@ const Contact = () => {
                     </label>
 
                     <textarea
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      name="message"
                       id="message"
                       rows="6"
                       placeholder="Tell us about your current fitness level, goals, or anything you'd like your coach to know..."
@@ -269,14 +354,17 @@ const Contact = () => {
                   {/* Submit */}
                   <button
                     type="submit"
+                    disabled={isSending}
                     className="w-full mt-6 bg-green-600 text-white dark:text-slate-950 rounded-full px-6 py-3.5 font-bold hover:-translate-y-1 transition duration-300 cursor-pointer"
                   >
-                    Send Message
+                    {isSending ? "Sending..." : "Send Message"}
                   </button>
 
-                  <p className="text-sm text-slate-500 dark:text-slate-400 text-center mt-4">
-                    We&apos;ll get back to you as soon as possible.
-                  </p>
+                  {successMessage && (
+                    <p className="text-sm text-green-800 dark:text-green-400 text-center mt-4 border py-2 rounded-xl">
+                      {successMessage}
+                    </p>
+                  )}
                 </form>
               </div>
             </div>
