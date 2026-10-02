@@ -1,323 +1,133 @@
-Understood. I will make **only the Blog section README**, complete in one block, so you can copy-paste directly into your `README.md`.
+# ReactFit — Fitness & Wellness Website
 
-```md
-# Blog System
+ReactFit is a modern, responsive fitness and wellness website built with React, Tailwind CSS, and React Router.
 
-## Overview
+The project includes multiple pages, reusable components, structured data, dark/light theme support, a BMI calculator, blog and service detail pages, pricing plans, coach profiles, and a fully working contact form connected with Web3Forms.
 
-The ReactFit blog system is built using a **single source of truth** approach.
+## Live Demo
 
-Blog content should not be duplicated between the homepage and the full blog page.
-
-The same blog data is reused in different sections:
-```
-
-blogs.js
-|
-|---- BlogSection.jsx
-| (Homepage blog preview)
-|
-|---- Blog.jsx
-| (Full blog listing page)
-|
-|---- BlogDetail.jsx
-(Single article page)
-
-```
-
-This keeps the project scalable and avoids updating the same content in multiple files.
+https://fitness-blond-pi.vercel.app/
 
 ---
 
-# Blog Data Structure
+## Features
 
-Blog information is stored separately from the UI.
-
-File:
-
-```
-
-src/data/blogs.js
-
-````
-
-Each blog post contains information such as:
-
-```javascript
-{
- id,
- slug,
- title,
- category,
- date,
- author,
- image,
- readTime,
- excerpt,
- content,
- featured
-}
-````
-
-The components only display the data.
+- Responsive design for desktop, tablet, and mobile
+- Multi-page navigation with React Router
+- Reusable React component architecture
+- Fitness services and detailed service pages
+- Coach profiles
+- Blog listing and individual blog detail pages
+- Challenges and challenge detail pages
+- Monthly and yearly pricing options
+- BMI calculator with dynamic BMI categories
+- Functional contact form with Web3Forms
+- Form validation
+- Loading state while sending messages
+- Success and error feedback
+- Automatic form reset after successful submission
+- Shared contact information across the Contact page and Footer
+- Light and dark mode
+- Theme preference saved with LocalStorage
+- Testimonials section
+- Responsive navigation
+- Scroll-to-top behavior between pages
+- Custom 404 page
 
 ---
 
-# Homepage Blog Section
+## Tech Stack
 
-File:
-
-```
-src/sections/BlogSection.jsx
-```
-
-The homepage should only display a preview of the blog.
-
-Purpose:
-
-- Show latest articles
-- Encourage users to visit the blog page
-- Keep homepage clean
-- Avoid displaying full articles
-
-Example logic:
-
-```javascript
-blogs.slice(0, 3);
-```
-
-The homepage uses the same blog data but with a different layout.
-
-Example:
-
-```
-Homepage
-
-Latest Articles
-
-[Image]
-Title
-Category
-Date
-Read More
-```
+- React
+- JavaScript
+- Tailwind CSS
+- React Router
+- Context API
+- LocalStorage
+- Web3Forms
+- React Icons
+- Vite
+- Vercel
 
 ---
 
-# Full Blog Page
+## Project Structure
 
-File:
-
-```
-src/pages/Blog.jsx
-```
-
-The blog page displays the complete article collection.
-
-Features:
-
-- Blog header
-- Featured article
-- Latest articles grid
-- Category information
-- Author information
-- Reading time
-- Newsletter CTA
-
-The page does not contain hardcoded blog information.
-
-It receives data from:
-
-```
-src/data/blogs.js
-```
-
----
-
-# Reusable Blog Components
-
-Instead of repeating article HTML, create reusable components.
-
-Recommended structure:
-
-```
+```text
 src/
- |
- ├── components/
- |      |
- |      └── BlogCard.jsx
- |
- ├── data/
- |      |
- |      └── blogs.js
- |
- ├── sections/
- |      |
- |      └── BlogSection.jsx
- |
- └── pages/
-        |
-        ├── Blog.jsx
-        └── BlogDetail.jsx
+│
+├── assets/
+│
+├── components/
+│   ├── BlogCard.jsx
+│   ├── CoachCard.jsx
+│   ├── Footer.jsx
+│   ├── Navbar.jsx
+│   ├── PricingCard.jsx
+│   ├── ScrollToTop.jsx
+│   └── ServiceCard.jsx
+│
+├── data/
+│   ├── blogs.js
+│   ├── coaches.js
+│   ├── contactInfo.js
+│   ├── navLinks.js
+│   ├── pricing.js
+│   ├── services.js
+│   ├── stats.js
+│   └── testimonials.js
+│
+├── layouts/
+│
+├── pages/
+│   ├── About.jsx
+│   ├── Blog.jsx
+│   ├── BlogDetail.jsx│
+│   ├── Coaches.jsx
+│   ├── Contact.jsx
+│   ├── FitnessCalculator.jsx
+│   ├── Home.jsx
+│   ├── NotFound.jsx
+│   ├── Pricing.jsx
+│   ├── ServiceDetail.jsx
+│   └── Services.jsx
+│
+├── sections/
+│   ├── BlogSection.jsx
+│   ├── CoachSection.jsx
+│   ├── HeroSection.jsx
+│   ├── HowItWorksSection.jsx
+│   ├── PricingSection.jsx
+│   ├── ServicesSection.jsx
+│   ├── TestimonialsSection.jsx
+│   └── VideoSection.jsx
+│
+├── App.jsx
+├── index.css
+└── main.jsx
 ```
 
-`BlogCard.jsx` is responsible for displaying a single article preview.
+# About the Project
 
-Example usage:
+ReactFit was built as a component-based React application focused on clean structure, reusable UI, responsive design, and practical frontend functionality.
+The website contains several different types of content including fitness services, coaches, pricing plans, blogs, challenges, testimonials, and fitness tools.
+Instead of keeping all content directly inside components, structured data is separated into dedicated files inside the data directory. This keeps the application easier to maintain and allows multiple components to reuse the same information.
 
-Homepage:
+# Key Implementation Details
 
-```jsx
-<BlogCard post={post} />
-```
+Reusable Components
+Reusable components such as ServiceCard, CoachCard, BlogCard, and PricingCard are used throughout the application.
+This helps reduce repeated JSX and keeps the UI consistent across different pages.
 
-Blog page:
+# Structured Data
 
-```jsx
-<BlogCard post={post} />
-```
+Content such as services, coaches, pricing plans, blog posts, navigation links, statistics, testimonials, and contact information is stored separately inside the data folder.
+For example, the same contact information can be reused by both the Footer and Contact page without duplicating the values.
 
-The same component can be reused in different layouts.
+## Project Status
 
----
+The main frontend functionality is complete and the project is actively being improved as I continue learning and adding new features.
 
-# Blog Detail Page
-
-Future page:
-
-```
-src/pages/BlogDetail.jsx
-```
-
-Route:
-
-```
-/blog/:slug
-```
-
-Example:
-
-```
-/blog/how-to-build-fitness-routine
-```
-
-The page uses:
-
-```javascript
-useParams();
-```
-
-to find the correct article.
-
-Flow:
-
-```
-User clicks Read More
-
-        ↓
-
-/blog/article-slug
-
-        ↓
-
-useParams()
-
-        ↓
-
-Find article in blogs.js
-
-        ↓
-
-Display full content
-```
-
----
-
-# React Concepts Practiced
-
-This blog system practices:
-
-- Data-driven UI
-- Component reuse
-- Props
-- Array.map()
-- Array.find()
-- Array.filter()
-- Array.slice()
-- Dynamic routing
-- useParams()
-- Separation of data and presentation
-
----
-
-# Important Architecture Rule
-
-Do not write blog content directly inside components.
-
-Avoid:
-
-```jsx
-<h2>How to Build Muscle</h2>
-```
-
-Prefer:
-
-```jsx
-<h2>{post.title}</h2>
-```
-
-The component should control the layout.
-
-The data file should control the content.
-
----
-
-# Future Improvements
-
-Possible upgrades:
-
-- Blog detail pages
-- Search system
-- Category filtering
-- Pagination
-- Related articles
-- Comments
-- Markdown article content
-- CMS integration
-- Admin dashboard for creating posts
-
----
-
-# Recommended Next Step
-
-Implement the blog system in this order:
-
-1. Create `blogs.js`
-2. Move all blog content into data
-3. Create reusable `BlogCard.jsx`
-4. Convert `BlogSection.jsx`
-5. Convert `Blog.jsx`
-6. Create `BlogDetail.jsx`
-7. Add dynamic blog routes
-
-Final structure:
-
-```
-One blog post created once
-
-        ↓
-
-Homepage updates automatically
-
-        ↓
-
-Blog page updates automatically
-
-        ↓
-
-Detail page displays full article
-```
-
-```
-
-```
+- Author
+  Built by Hem Raj Bhat
+  Frontend Developer
